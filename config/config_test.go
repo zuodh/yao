@@ -64,3 +64,15 @@ func TestLoadFrom(t *testing.T) {
 	assert.Equal(t, cfg.DB.Primary[0], os.Getenv("YAO_DB_PRIMARY"))
 	assert.Equal(t, cfg.DB.Secondary[0], os.Getenv("YAO_DB_SECONDARY"))
 }
+
+func TestPrivacyMode(t *testing.T) {
+	// 测试默认值
+	cfg := Load()
+	assert.False(t, cfg.PrivacyMode)
+	assert.False(t, IsPrivacyMode())
+
+	// 测试启用隐私模式
+	Privacy()
+	assert.True(t, Conf.PrivacyMode)
+	assert.True(t, IsPrivacyMode())
+}

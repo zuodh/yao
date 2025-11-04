@@ -30,6 +30,9 @@ func init() {
 	} else if Conf.Mode == "development" {
 		Development()
 	}
+	if Conf.PrivacyMode {
+		Privacy()
+	}
 }
 
 // LoadFrom 从配置项中加载
@@ -79,6 +82,17 @@ func Development() {
 	}
 	gin.SetMode(gin.DebugMode)
 	ReloadLog()
+}
+
+// Privacy 设定为隐私模式
+func Privacy() {
+	Conf.PrivacyMode = true
+	log.Info("隐私模式已启用")
+}
+
+// IsPrivacyMode 检查是否启用隐私模式
+func IsPrivacyMode() bool {
+	return Conf.PrivacyMode
 }
 
 // ReloadLog 重新打开日志

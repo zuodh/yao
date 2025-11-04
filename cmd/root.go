@@ -126,4 +126,7 @@ func Boot() {
 	} else if config.Conf.Mode == "development" {
 		config.Development()
 	}
+	if config.Conf.PrivacyMode {
+		config.Privacy()
+	}
 }
